@@ -294,9 +294,12 @@ const FixturePrediction = () => {
                 )}
                 <h2>
         <span style={
-          team.name === "Liverpool" ? { color: '#da1515' } :
-              team.name === "Arsenal" ? { color: '#F50707' } :
-                  team.name === "Manchester City" ? { color: '#86c5da' } : null
+          team.name === "Manchester United" ? { color: '#da1515' } :
+              team.name === "Chelsea" ? { color: 'mediumblue' } :
+                  team.name === "West Ham United" ? { color: 'maroon' } :
+                        team.name === "Brighton and Hove Albion" ? { color: 'dodgerblue' } :
+                          team.name === "Wolverhampton Wanderers" ? { color: 'orange'} :
+                              team.name === "AFC Bournemouth" ? { color: 'red'} : null
         }>
           {team.name}
         </span> &nbsp;- {team.currentPoints} Points
