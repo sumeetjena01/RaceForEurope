@@ -1,0 +1,31 @@
+{
+  "name": "raceforeurope",
+  "version": "1.0.0",
+  "description": "V2 of the Flameo Predictor! This one allows you to predict which Premier League clubs will finish inside of the European spots this season.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumeetjena01/RaceForEurope.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumeetjena01/RaceForEurope/issues"
+  },
+  "homepage": "https://github.com/sumeetjena01/RaceForEurope#readme",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0"
+  }
+}
