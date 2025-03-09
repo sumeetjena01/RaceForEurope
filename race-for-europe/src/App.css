@@ -22,11 +22,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #282c34;
+  background-color: #06402b;
   min-height: 10vh;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+/* Apply Bebas Neue font to h1 and h6 */
+h1 {
+  font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
+  font-size: 150x; /* Adjust size as needed */
+  margin: 0; /* Remove default margin */
+}
+
+h6 {
+  font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
+  font-size: 7cqb; /* Adjust size as needed */
+  margin: 0; /* Remove default margin */
 }
 
 .App-link {

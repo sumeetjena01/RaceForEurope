@@ -218,20 +218,20 @@ const FixturePrediction = () => {
         onClick={resetPredictions}
         style={{
           position: 'absolute',
-          top: '5%',
-          left: '20%',
+          top: '3%',
+          left: '18%',
           transform: 'translate(-50%, -50%)',
           padding: '5px 10px',
-          fontSize: '12px',
+          fontSize: '10px',
           cursor: 'pointer',
           borderRadius: '15px',
           zIndex: 1000,
-          backgroundColor: '#007bff',
-          color: 'white',
+          backgroundColor: '#bad1c2',
+          color: 'black',
           border: 'none',
           fontWeight: "bold"
         }}>
-        Reset Predictions
+        RESET PREDICTIONS
       </button>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
   {teamsData.map((team, index) => (
@@ -290,7 +290,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="/predictorlogo.png" alt="Predictor Logo" style={{ width: '70px', height: 'auto', verticalAlign: 'middle', marginTop: '10px' }} />
+        <img src="/whitelogo.png" alt="Predictor Logo" style={{ width: '50px', height: 'auto', verticalAlign: 'middle', marginTop: '10px', marginBottom: '10px', marginRight: '-20px' }} />
         <h1 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', verticalAlign: 'middle' }}>FLAMEO PREDICTOR</h1>
         <h6 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', marginTop: '5px', verticalAlign: 'middle' }}>THE RACE FOR EUROPE!</h6>
       </header>
@@ -298,15 +298,15 @@ function App() {
       <button
         style={{
           position: 'absolute',
-          top: '5%',
-          right: '20%',
+          top: '3%',
+          right: '15%',
           transform: 'translate(50%, -50%)',
           padding: '5px 10px',
-          fontSize: '12px',
+          fontSize: '10px',
           cursor: 'pointer',
           borderRadius: '15px',
           zIndex: 1000,
-          backgroundColor: '#bff4be',
+          backgroundColor: '#bad1c2',
           color: 'black',
           border: 'none',
           fontWeight: 'bold',
