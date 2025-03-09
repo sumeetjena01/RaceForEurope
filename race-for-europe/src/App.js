@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
+import manCityLogo from './assets/manchester-city-logo-png-transparent.png';
+import chelseaLogo from './assets/Chelsea_FC.svg.webp';
+import newcastleLogo from './assets/Newcastle_United_Logo.svg.png';
+import forestLogo from './assets/nottingham-forest-fc-logo-png-transparent.png';
 
 const teams = [
   {
     name: "Chelsea",
-    currentPoints: 46,
-    goalDifference: 16,
+    currentPoints: 49,
+    goalDifference: 17,
     fixtures: [
-      { opponent: "GW28: Leicester City", venue: "Home", result: "" },
       { opponent: "GW29: Arsenal", venue: "Away", result: "" },
       { opponent: "GW30: Tottenham Hotspur", venue: "Home", result: "" },
       { opponent: "GW31: Brentford", venue: "Away", result: "" },
@@ -73,100 +75,98 @@ const teams = [
       { opponent: "GW38: Everton", venue: "Home", result: "" },
     ],
   },
-]
+];
+
 // Simple Modal Component
 function Modal({ children, onClose }) {
   return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    }}>
       <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        padding: '20px',
+        background: 'white',
+        borderRadius: '5px',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        minWidth: '300px',
+        minHeight: '100px',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}>
-        <div style={{
-          padding: '20px',
-          background: 'white',
-          borderRadius: '5px',
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-          minWidth: '300px',
-          minHeight: '100px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}>
-          {children}
-          <button onClick={onClose} style={{
-            marginTop: '20px',
-            alignSelf: 'flex-end',
-            padding: '5px 10px',
-            background: 'lightgrey',
-            border: 'none',
-            borderRadius: '3px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}>Close</button>
-        </div>
+        {children}
+        <button onClick={onClose} style={{
+          marginTop: '20px',
+          alignSelf: 'flex-end',
+          padding: '5px 10px',
+          background: 'lightgrey',
+          border: 'none',
+          borderRadius: '3px',
+          cursor: 'pointer',
+          fontWeight: 'bold'
+        }}>Close</button>
       </div>
+    </div>
   );
 }
 
 const FixturePrediction = () => {
-
   const getButtonStyle = (isPredicted, result) => ({
     padding: '10px 20px',
     margin: '5px',
-    borderRadius: '20px', // Makes buttons rounded
+    borderRadius: '20px',
     cursor: 'pointer',
     backgroundColor: isPredicted ? {
       win: 'green',
       draw: 'yellow',
       lose: 'red',
-    }[result] : 'lightgrey', // Default color if no prediction has been made
+    }[result] : 'lightgrey',
     color: 'black',
     border: 'none',
   });
 
-
   const [teamsData, setTeamsData] = useState(teams.map(team => ({
     ...team,
-    originalPoints: team.currentPoints, // Preserve the original points
+    originalPoints: team.currentPoints,
     fixtures: team.fixtures.map(fixture => ({
       ...fixture,
-      result: "" // Initialize all fixture results to an empty string
+      result: ""
     })),
   })));
 
-  const [winnerMessage, setWinnerMessage] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [rankingMessage, setRankingMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const allPredicted = teamsData.every(team => team.fixtures.every(fixture => fixture.result));
     if (allPredicted) {
-      // Initially sort teams by points then by goal difference
-      let sortedTeams = [...teamsData].sort((a, b) => b.currentPoints - a.currentPoints || b.goalDifference - a.goalDifference);
+      // Sort teams by points (descending) and then by goal difference (descending)
+      const sortedTeams = [...teamsData].sort((a, b) => b.currentPoints - a.currentPoints || b.goalDifference - a.goalDifference);
 
-      let winner = sortedTeams[0]; // Assume the top team is the winner
-
-      // Check for points tie and apply tiebreaker rules
-      if (sortedTeams[0].currentPoints === sortedTeams[1].currentPoints) {
-        // Arsenal tiebreaker
-        if (sortedTeams[0].name === "Arsenal" || sortedTeams[1].name === "Arsenal") {
-          winner = sortedTeams.find(team => team.name === "Arsenal");
+      // Assign rankings based on sorted order
+      const rankings = sortedTeams.map((team, index) => {
+        let position = index + 3; // Start ranking from 3rd place
+        let qualification;
+        if (position === 3 || position === 4) {
+          qualification = "Champions League";
+        } else if (position === 5) {
+          qualification = "Europa League";
+        } else if (position === 6) {
+          qualification = "Conference League";
         }
-        // Liverpool and City tiebreaker
-        else if (sortedTeams[0].name === "Liverpool" && sortedTeams[1].name === "Manchester City" ||
-            sortedTeams[0].name === "Manchester City" && sortedTeams[1].name === "Liverpool") {
-          winner = sortedTeams.find(team => team.name === "Liverpool");
-        }
-      }
+        return `${position}. ${team.name} - ${team.currentPoints} Points (${qualification})`;
+      });
 
-      setWinnerMessage(`You have picked ${winner.name} to win the 2023/2024 Premier League title!`);
-      setIsModalOpen(true); // Open the modal with the winner message
+      setRankingMessage(rankings.join('\n'));
+      setIsModalOpen(true);
     }
   }, [teamsData]);
 
@@ -176,14 +176,12 @@ const FixturePrediction = () => {
         const newFixtures = [...team.fixtures];
         newFixtures[fixtureIndex] = { ...newFixtures[fixtureIndex], result: newResult };
 
-        // Re-calculate only the points gained from predictions
         const pointsFromPredictions = newFixtures.reduce((acc, fixture) => {
           if (fixture.result === 'win') return acc + 3;
           if (fixture.result === 'draw') return acc + 1;
           return acc;
         }, 0);
 
-        // Do not add to originalPoints directly; keep currentPoints updated separately if needed
         return { ...team, fixtures: newFixtures, currentPoints: pointsFromPredictions + team.originalPoints };
       }
       return team;
@@ -192,113 +190,132 @@ const FixturePrediction = () => {
 
   const resetPredictions = () => {
     const resetTeamsData = teamsData.map(team => {
-      // Reset each team's fixtures and points
       const resetFixtures = team.fixtures.map(fixture => ({
         ...fixture,
-        result: "" // Clear the prediction result
+        result: ""
       }));
 
       let resetPoints = team.currentPoints;
-      // Hard-code reset of points tally
-      if (team.name === "Manchester City") resetPoints = 64;
-      else if (team.name === "Liverpool") resetPoints = 67;
-      else if (team.name === "Arsenal") resetPoints = 65;
+      if (team.name === "Manchester City") resetPoints = 47;
+      else if (team.name === "Chelsea") resetPoints = 49;
+      else if (team.name === "Newcastle United") resetPoints = 44;
+      else if (team.name === "Nottingham Forest") resetPoints = 51;
 
       return {
         ...team,
         fixtures: resetFixtures,
-        currentPoints: resetPoints // Set to the original tally
+        currentPoints: resetPoints
       };
     });
     setTeamsData(resetTeamsData);
-    setWinnerMessage(''); // Optionally clear the winner message
-    setIsModalOpen(false); // Close the modal
+    setRankingMessage('');
+    setIsModalOpen(false);
   };
 
   return (
-      <div>
-        <button
-            onClick={resetPredictions}
-            style={{
-              position: 'absolute',
-              top: '9%',
-              left: '12%',
-              transform: 'translate(-50%, -50%)',
-              padding: '15px 30px',
-              fontSize: '18px',
-              cursor: 'pointer',
-              borderRadius: '15px',
-              zIndex: 1000,
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              fontWeight: "bold"
-            }}>
-          Reset Predictions
-        </button>
-
-        <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-          {teamsData.map((team, index) => (
-              <div key={index} style={{ margin: 20, textAlign: 'center' }}>
-                {team.name === "Manchester City" && (
-                    <img src="/city.png" alt="Manchester City Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px'}} />
-                )}
-                {team.name === "Liverpool" && (
-                    <img src="/liverpool.png" alt="Liverpool Logo" style={{ maxWidth: '280px', marginBottom: '5px', marginTop: '1px' }} />
-                )}
-                {team.name === "Arsenal" && (
-                    <img src="/arsenal.png" alt="Arsenal Logo" style={{ maxWidth: '207px', marginBottom: '30px', marginTop: '33px' }} />
-                )}
-                <h2>
-        <span style={
-          team.name === "Manchester United" ? { color: '#da1515' } :
-              team.name === "Chelsea" ? { color: 'mediumblue' } :
-                  team.name === "West Ham United" ? { color: 'maroon' } :
-                        team.name === "Brighton and Hove Albion" ? { color: 'dodgerblue' } :
-                          team.name === "Wolverhampton Wanderers" ? { color: 'orange'} :
-                              team.name === "AFC Bournemouth" ? { color: 'red'} : null
-        }>
-          {team.name}
-        </span> &nbsp;- {team.currentPoints} Points
-                </h2>
-                {team.fixtures.map((fixture, fIndex) => (
-                    <div key={fIndex} style={{ marginBottom: 10 }}>
-                      <p className="bold-text">{fixture.opponent} ({fixture.venue})</p>
-                      {['win', 'draw', 'lose'].map(result => (
-                          <button
-                              key={result}
-                              style={getButtonStyle(fixture.result === result, result)}
-                              onClick={() => updatePointsAndResult(team.name, fIndex, result)}
-                          >
-                            {result.charAt(0).toUpperCase() + result.slice(1)}
-                          </button>
-                      ))}
-                    </div>
+    <div>
+      <button
+        onClick={resetPredictions}
+        style={{
+          position: 'absolute',
+          top: '5%',
+          left: '20%',
+          transform: 'translate(-50%, -50%)',
+          padding: '5px 10px',
+          fontSize: '12px',
+          cursor: 'pointer',
+          borderRadius: '15px',
+          zIndex: 1000,
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          fontWeight: "bold"
+        }}>
+        Reset Predictions
+      </button>
+      <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+  {teamsData.map((team, index) => (
+    <div key={index} style={{ margin: 20, textAlign: 'center' }}>
+      {team.name === "Manchester City" && (
+        <img src={manCityLogo} alt="Manchester City Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
+      )}
+      {team.name === "Chelsea" && (
+        <img src={chelseaLogo} alt="Chelsea Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
+      )}
+      {team.name === "Newcastle United" && (
+        <img src={newcastleLogo} alt="Newcastle United Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
+      )}
+      {team.name === "Nottingham Forest" && (
+        <img src={forestLogo} alt="Nottingham Forest Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
+      )}
+      <h2>
+              <span style={
+                team.name === "Nottingham Forest" ? { color: '#da1515' } :
+                  team.name === "Chelsea" ? { color: 'mediumblue' } :
+                    team.name === "Manchester City" ? { color: 'dodgerblue' } :
+                      team.name === "Newcastle United" ? { color: 'black' } : null
+              }>
+                {team.name}
+              </span> &nbsp;- {team.currentPoints} Points
+            </h2>
+            {team.fixtures.map((fixture, fIndex) => (
+              <div key={fIndex} style={{ marginBottom: 10 }}>
+                <p className="bold-text">{fixture.opponent} ({fixture.venue})</p>
+                {['win', 'draw', 'lose'].map(result => (
+                  <button
+                    key={result}
+                    style={getButtonStyle(fixture.result === result, result)}
+                    onClick={() => updatePointsAndResult(team.name, fIndex, result)}
+                  >
+                    {result.charAt(0).toUpperCase() + result.slice(1)}
+                  </button>
                 ))}
               </div>
-          ))}
-        </div>
-        {isModalOpen && (
-            <Modal onClose={() => setIsModalOpen(false)}>
-              <div style={{ fontSize: '30px', color: 'black', fontWeight: 'bold' }}>{winnerMessage}</div>
-            </Modal>
-        )}
-
+            ))}
+          </div>
+        ))}
       </div>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <div style={{ fontSize: '20px', color: 'black', fontWeight: 'bold', whiteSpace: 'pre-line' }}>
+            {rankingMessage}
+          </div>
+        </Modal>
+      )}
+    </div>
   );
 }
 
 function App() {
   return (
-      <div className="App">
-        <header className="App-header">
-          <img src="/predictorlogo.png" alt="Predictor Logo" style={{ width: '200px', height: 'auto', verticalAlign: 'middle', marginTop: '20px' }} />
-          <h1 style={{ display: 'inline', marginLeft: '10px', marginBottom: '25px', verticalAlign: 'middle'}}>FLAMEO PREDICTOR:</h1>
-          <h3 style={{ display: 'inline', marginLeft: '10px', marginBottom: '25px', marginTop: '5px', verticalAlign: 'middle'}}>THE RACE FOR EUROPE</h3>
-        </header>
-        <FixturePrediction />
-
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <img src="/predictorlogo.png" alt="Predictor Logo" style={{ width: '70px', height: 'auto', verticalAlign: 'middle', marginTop: '10px' }} />
+        <h1 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', verticalAlign: 'middle' }}>FLAMEO PREDICTOR</h1>
+        <h6 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', marginTop: '5px', verticalAlign: 'middle' }}>THE RACE FOR EUROPE!</h6>
+      </header>
+      {/* New Button */}
+      <button
+        style={{
+          position: 'absolute',
+          top: '5%',
+          right: '20%',
+          transform: 'translate(50%, -50%)',
+          padding: '5px 10px',
+          fontSize: '12px',
+          cursor: 'pointer',
+          borderRadius: '15px',
+          zIndex: 1000,
+          backgroundColor: '#bff4be',
+          color: 'black',
+          border: 'none',
+          fontWeight: 'bold',
+        }}
+      >
+        @FLAMEOSUMEET
+      </button>
+      <FixturePrediction />
+    </div>
   );
 }
 
