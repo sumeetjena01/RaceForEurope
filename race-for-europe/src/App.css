@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+body {
+  font-family: 'Bebas Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,6 +42,12 @@ h1 {
   margin: 0; /* Remove default margin */
 }
 
+h2 {
+  font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
+  font-size: 10x; /* Adjust size as needed */
+  margin: 0; /* Remove default margin */
+}
+
 h6 {
   font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
   font-size: 7cqb; /* Adjust size as needed */
@@ -60,19 +72,23 @@ h6 {
 }
 
 button.win {
+  font-family: 'Bebas Neue', sans-serif;
   background-color: forestgreen;
   font-weight: bold;
 }
 
 button.draw {
+  font-family: 'Bebas Neue', sans-serif;
   background-color: yellow;
 }
 
 button.lose {
+  font-family: 'Bebas Neue', sans-serif;
   background-color: red;
 }
 
 button.disabled, button:disabled {
+  font-family: 'Bebas Neue', sans-serif;
   background-color: grey;
 }
 

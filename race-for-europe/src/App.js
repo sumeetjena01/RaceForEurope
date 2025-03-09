@@ -131,6 +131,7 @@ const FixturePrediction = () => {
     }[result] : 'lightgrey',
     color: 'black',
     border: 'none',
+    fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
   });
 
   const [teamsData, setTeamsData] = useState(teams.map(team => ({
@@ -229,7 +230,8 @@ const FixturePrediction = () => {
           backgroundColor: '#bad1c2',
           color: 'black',
           border: 'none',
-          fontWeight: "bold"
+          fontWeight: "bold",
+          fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
         }}>
         RESET PREDICTIONS
       </button>
@@ -278,6 +280,7 @@ const FixturePrediction = () => {
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <div style={{ fontSize: '20px', color: 'black', fontWeight: 'bold', whiteSpace: 'pre-line' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Here are your final predictions!</h2>
             {rankingMessage}
           </div>
         </Modal>
@@ -310,6 +313,7 @@ function App() {
           color: 'black',
           border: 'none',
           fontWeight: 'bold',
+          fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
         }}
       >
         @FLAMEOSUMEET
