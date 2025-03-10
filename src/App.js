@@ -155,11 +155,11 @@ const FixturePrediction = () => {
       const rankings = sortedTeams.map((team, index) => {
         let position = index + 3; // Start ranking from 3rd place
         let qualification;
-        if (position === 3 || position === 4) {
+        if (position === 3 || position === 4 || position === 5) {
           qualification = "Champions League";
-        } else if (position === 5) {
-          qualification = "Europa League";
         } else if (position === 6) {
+          qualification = "Europa League";
+        } else if (position === 7) {
           qualification = "Conference League";
         }
         return `${position}. ${team.name} - ${team.currentPoints} Points (${qualification})`;
