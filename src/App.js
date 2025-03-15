@@ -25,8 +25,8 @@ const teams = [
   },
   {
     name: "Nottingham Forest",
-    currentPoints: 51,
-    goalDifference: 12,
+    currentPoints: 54,
+    goalDifference: 14,
     fixtures: [
       { opponent: "GW29: Ipswich Town", venue: "Away", result: "" },
       { opponent: "GW30: Manchester United", venue: "Home", result: "" },
@@ -42,7 +42,7 @@ const teams = [
   },
   {
     name: "Manchester City",
-    currentPoints: 47,
+    currentPoints: 48,
     goalDifference: 15,
     fixtures: [
       { opponent: "GW29: Brighton and Hove Albion", venue: "Home", result: "" },
