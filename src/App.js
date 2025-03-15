@@ -28,7 +28,6 @@ const teams = [
     currentPoints: 54,
     goalDifference: 14,
     fixtures: [
-      { opponent: "GW29: Ipswich Town", venue: "Away", result: "" },
       { opponent: "GW30: Manchester United", venue: "Home", result: "" },
       { opponent: "GW31: Aston Villa", venue: "Away", result: "" },
       { opponent: "GW32: Everton", venue: "Home", result: "" },
@@ -45,7 +44,6 @@ const teams = [
     currentPoints: 48,
     goalDifference: 15,
     fixtures: [
-      { opponent: "GW29: Brighton and Hove Albion", venue: "Home", result: "" },
       { opponent: "GW30: Leicester City", venue: "Home", result: "" },
       { opponent: "GW31: Manchester United", venue: "Away", result: "" },
       { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
