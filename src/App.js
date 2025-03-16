@@ -9,9 +9,8 @@ const teams = [
   {
     name: "Chelsea",
     currentPoints: 49,
-    goalDifference: 17,
+    goalDifference: 16,
     fixtures: [
-      { opponent: "GW29: Arsenal", venue: "Away", result: "" },
       { opponent: "GW30: Tottenham Hotspur", venue: "Home", result: "" },
       { opponent: "GW31: Brentford", venue: "Away", result: "" },
       { opponent: "GW32: Ipswich Town", venue: "Home", result: "" },
