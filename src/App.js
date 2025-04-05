@@ -26,7 +26,6 @@ const teams = [
     currentPoints: 57,
     goalDifference: 15,
     fixtures: [
-      { opponent: "GW31: Aston Villa", venue: "Away", result: "" },
       { opponent: "GW32: Everton", venue: "Home", result: "" },
       { opponent: "GW33: Tottenham Hotspur", venue: "Away", result: "" },
       { opponent: "GW34: Brentford", venue: "Home", result: "" },
