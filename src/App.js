@@ -36,10 +36,9 @@ const teams = [
   },
   {
     name: "Manchester City",
-    currentPoints: 51,
+    currentPoints: 52,
     goalDifference: 17,
     fixtures: [
-      { opponent: "GW31: Manchester United", venue: "Away", result: "" },
       { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
       { opponent: "GW33: Everton", venue: "Away", result: "" },
       { opponent: "GW34: Aston Villa", venue: "Home", result: "" },
