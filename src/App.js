@@ -8,10 +8,9 @@ import forestLogo from './assets/nottingham-forest-fc-logo-png-transparent.png';
 const teams = [
   {
     name: "Chelsea",
-    currentPoints: 52,
+    currentPoints: 53,
     goalDifference: 17,
     fixtures: [
-      { opponent: "GW31: Brentford", venue: "Away", result: "" },
       { opponent: "GW32: Ipswich Town", venue: "Home", result: "" },
       { opponent: "GW33: Fulham", venue: "Away", result: "" },
       { opponent: "GW34: Everton", venue: "Home", result: "" },
