@@ -50,10 +50,9 @@ const teams = [
   },
   {
     name: "Newcastle United",
-    currentPoints: 50,
-    goalDifference: 10,
+    currentPoints: 53,
+    goalDifference: 13,
     fixtures: [
-      { opponent: "GW31: Leicester City", venue: "Away", result: "" },
       { opponent: "GW32: Manchester United", venue: "Home", result: "" },
       { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
       { opponent: "GW33: Aston Villa", venue: "Away", result: "" },
