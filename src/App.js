@@ -23,9 +23,8 @@ const teams = [
   {
     name: "Nottingham Forest",
     currentPoints: 57,
-    goalDifference: 15,
+    goalDifference: 13,
     fixtures: [
-      { opponent: "GW32: Everton", venue: "Home", result: "" },
       { opponent: "GW33: Tottenham Hotspur", venue: "Away", result: "" },
       { opponent: "GW34: Brentford", venue: "Home", result: "" },
       { opponent: "GW35: Crystal Palace", venue: "Away", result: "" },
@@ -36,10 +35,9 @@ const teams = [
   },
   {
     name: "Manchester City",
-    currentPoints: 52,
-    goalDifference: 17,
+    currentPoints: 55,
+    goalDifference: 20,
     fixtures: [
-      { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
       { opponent: "GW33: Everton", venue: "Away", result: "" },
       { opponent: "GW34: Aston Villa", venue: "Home", result: "" },
       { opponent: "GW35: Wolverhampton Wanderers", venue: "Home", result: "" },
