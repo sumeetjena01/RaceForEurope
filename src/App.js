@@ -4,14 +4,14 @@ import manCityLogo from './assets/manchester-city-logo-png-transparent.png';
 import chelseaLogo from './assets/Chelsea_FC.svg.webp';
 import newcastleLogo from './assets/Newcastle_United_Logo.svg.png';
 import forestLogo from './assets/nottingham-forest-fc-logo-png-transparent.png';
+import villaLogo from './assets/newvilla.png';
 
 const teams = [
   {
     name: "Chelsea",
-    currentPoints: 53,
+    currentPoints: 54,
     goalDifference: 17,
     fixtures: [
-      { opponent: "GW32: Ipswich Town", venue: "Home", result: "" },
       { opponent: "GW33: Fulham", venue: "Away", result: "" },
       { opponent: "GW34: Everton", venue: "Home", result: "" },
       { opponent: "GW35: Liverpool", venue: "Home", result: "" },
@@ -48,10 +48,9 @@ const teams = [
   },
   {
     name: "Newcastle United",
-    currentPoints: 53,
-    goalDifference: 13,
+    currentPoints: 56,
+    goalDifference: 16,
     fixtures: [
-      { opponent: "GW32: Manchester United", venue: "Home", result: "" },
       { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
       { opponent: "GW33: Aston Villa", venue: "Away", result: "" },
       { opponent: "GW34: Ipswich Town", venue: "Home", result: "" },
@@ -61,9 +60,21 @@ const teams = [
       { opponent: "GW38: Everton", venue: "Home", result: "" },
     ],
   },
+  {
+    name: "Aston Villa",
+    currentPoints: 54,
+    goalDifference: 3,
+    fixtures: [
+      { opponent: "GW33: Newcastle United", venue: "Home", result: "" },
+      { opponent: "GW33: Manchester City", venue: "Away", result: "" },
+      { opponent: "GW35: Fulham", venue: "Home", result: "" },
+      { opponent: "GW36: Bournemouth", venue: "Away", result: "" },
+      { opponent: "GW37: Tottenham Hotspur", venue: "Home", result: "" },
+      { opponent: "GW38: Manchester United", venue: "Away", result: "" },
+    ],
+  },
 ];
 
-// Simple Modal Component
 function Modal({ children, onClose }) {
   return (
     <div style={{
@@ -117,7 +128,7 @@ const FixturePrediction = () => {
     }[result] : 'lightgrey',
     color: 'black',
     border: 'none',
-    fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
+    fontFamily: "'Bebas Neue', sans-serif",
   });
 
   const [teamsData, setTeamsData] = useState(teams.map(team => ({
@@ -135,12 +146,9 @@ const FixturePrediction = () => {
   useEffect(() => {
     const allPredicted = teamsData.every(team => team.fixtures.every(fixture => fixture.result));
     if (allPredicted) {
-      // Sort teams by points (descending) and then by goal difference (descending)
       const sortedTeams = [...teamsData].sort((a, b) => b.currentPoints - a.currentPoints || b.goalDifference - a.goalDifference);
-
-      // Assign rankings based on sorted order
       const rankings = sortedTeams.map((team, index) => {
-        let position = index + 3; // Start ranking from 3rd place
+        let position = index + 3;
         let qualification;
         if (position === 3 || position === 4 || position === 5) {
           qualification = "Champions League";
@@ -183,10 +191,11 @@ const FixturePrediction = () => {
       }));
 
       let resetPoints = team.currentPoints;
-      if (team.name === "Manchester City") resetPoints = 47;
-      else if (team.name === "Chelsea") resetPoints = 49;
-      else if (team.name === "Newcastle United") resetPoints = 44;
-      else if (team.name === "Nottingham Forest") resetPoints = 51;
+      if (team.name === "Manchester City") resetPoints = 55;
+      else if (team.name === "Chelsea") resetPoints = 54;
+      else if (team.name === "Newcastle United") resetPoints = 56;
+      else if (team.name === "Nottingham Forest") resetPoints = 57;
+      else if (team.name === "Aston Villa") resetPoints = 54;
 
       return {
         ...team,
@@ -217,32 +226,47 @@ const FixturePrediction = () => {
           color: 'black',
           border: 'none',
           fontWeight: "bold",
-          fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
+          fontFamily: "'Bebas Neue', sans-serif",
         }}>
         RESET PREDICTIONS
       </button>
-      <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-  {teamsData.map((team, index) => (
-    <div key={index} style={{ margin: 20, textAlign: 'center' }}>
-      {team.name === "Manchester City" && (
-        <img src={manCityLogo} alt="Manchester City Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
-      )}
-      {team.name === "Chelsea" && (
-        <img src={chelseaLogo} alt="Chelsea Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
-      )}
-      {team.name === "Newcastle United" && (
-        <img src={newcastleLogo} alt="Newcastle United Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
-      )}
-      {team.name === "Nottingham Forest" && (
-        <img src={forestLogo} alt="Nottingham Forest Logo" style={{ maxWidth: '250px', marginBottom: '10px', marginTop: '17px' }} />
-      )}
-      <h2>
-              <span style={
-                team.name === "Nottingham Forest" ? { color: '#da1515' } :
-                  team.name === "Chelsea" ? { color: 'mediumblue' } :
-                    team.name === "Manchester City" ? { color: 'dodgerblue' } :
-                      team.name === "Newcastle United" ? { color: 'black' } : null
-              }>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(70px, 1fr))',
+          gap: '30px',
+          justifyItems: 'center',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}
+      >
+        {teamsData.map((team, index) => (
+          <div key={index} style={{ textAlign: 'center', width: '250px' }}>
+            <img
+              src={
+                team.name === "Manchester City" ? manCityLogo :
+                team.name === "Chelsea" ? chelseaLogo :
+                team.name === "Newcastle United" ? newcastleLogo :
+                team.name === "Nottingham Forest" ? forestLogo :
+                team.name === "Aston Villa" ? villaLogo : ""
+              }
+              alt={`${team.name} Logo`}
+              style={{
+                width: '150px',
+                height: '150px',
+                objectFit: 'contain',
+                marginBottom: '10px',
+                marginTop: '17px'
+              }}
+            />
+            <h2>
+              <span style={{
+                color: team.name === "Nottingham Forest" ? '#da1515' :
+                       team.name === "Chelsea" ? 'mediumblue' :
+                       team.name === "Manchester City" ? 'dodgerblue' :
+                       team.name === "Aston Villa" ? '#670E36' :
+                       team.name === "Newcastle United" ? 'black' : 'inherit'
+              }}>
                 {team.name}
               </span> &nbsp;- {team.currentPoints} Points
             </h2>
@@ -264,18 +288,18 @@ const FixturePrediction = () => {
         ))}
       </div>
       {isModalOpen && (
-  <Modal onClose={() => setIsModalOpen(false)}>
-    <div style={{ fontSize: '20px', color: 'black', fontWeight: 'bold', whiteSpace: 'pre-line' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
-        Make sure to follow <span style={{ color: 'blue' }}>@flameosumeet</span> on Twitter! Here are your final predictions!
-      </h2>
-      {rankingMessage}
-    </div>
-  </Modal>
-)}
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <div style={{ fontSize: '20px', color: 'black', fontWeight: 'bold', whiteSpace: 'pre-line' }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
+              Make sure to follow <span style={{ color: 'blue' }}>@flameosumeet</span> on Twitter! Here are your final predictions!
+            </h2>
+            {rankingMessage}
+          </div>
+        </Modal>
+      )}
     </div>
   );
-}
+};
 
 function App() {
   return (
@@ -285,7 +309,6 @@ function App() {
         <h1 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', verticalAlign: 'middle' }}>FLAMEO PREDICTOR</h1>
         <h6 style={{ display: 'inline', marginLeft: '10px', marginBottom: '15px', marginTop: '5px', verticalAlign: 'middle' }}>THE RACE FOR EUROPE!</h6>
       </header>
-      {/* New Button */}
       <button
         style={{
           position: 'absolute',
@@ -301,7 +324,7 @@ function App() {
           color: 'black',
           border: 'none',
           fontWeight: 'bold',
-          fontFamily: "'Bebas Neue', sans-serif", // Add Bebas Neue font
+          fontFamily: "'Bebas Neue', sans-serif",
         }}
       >
         @FLAMEOSUMEET
