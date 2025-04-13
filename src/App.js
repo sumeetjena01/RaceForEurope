@@ -231,17 +231,26 @@ const FixturePrediction = () => {
         RESET PREDICTIONS
       </button>
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(70px, 1fr))',
-          gap: '30px',
-          justifyItems: 'center',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
-      >
+  style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '30px',
+    padding: '0 20px',
+    boxSizing: 'border-box',
+  }}
+>
+
         {teamsData.map((team, index) => (
-          <div key={index} style={{ textAlign: 'center', width: '250px' }}>
+          <div
+          key={index}
+          style={{
+            textAlign: 'center',
+            width: '220px', // ✅ reduce width from 280px
+            flex: '1 1 220px',
+          }}
+        >
+        
             <img
               src={
                 team.name === "Manchester City" ? manCityLogo :
