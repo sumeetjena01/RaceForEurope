@@ -21,7 +21,7 @@ const teams = [
     ],
   },
   {
-    name: "Nottingham Forest",
+    name: "Forest",
     currentPoints: 57,
     goalDifference: 13,
     fixtures: [
@@ -47,11 +47,10 @@ const teams = [
     ],
   },
   {
-    name: "Newcastle United",
-    currentPoints: 56,
-    goalDifference: 16,
+    name: "Newcastle",
+    currentPoints: 59,
+    goalDifference: 21,
     fixtures: [
-      { opponent: "GW32: Crystal Palace", venue: "Home", result: "" },
       { opponent: "GW33: Aston Villa", venue: "Away", result: "" },
       { opponent: "GW34: Ipswich Town", venue: "Home", result: "" },
       { opponent: "GW35: Brighton and Hove Albion", venue: "Away", result: "" },
@@ -193,8 +192,8 @@ const FixturePrediction = () => {
       let resetPoints = team.currentPoints;
       if (team.name === "Manchester City") resetPoints = 55;
       else if (team.name === "Chelsea") resetPoints = 54;
-      else if (team.name === "Newcastle United") resetPoints = 56;
-      else if (team.name === "Nottingham Forest") resetPoints = 57;
+      else if (team.name === "Newcastle") resetPoints = 56;
+      else if (team.name === "Forest") resetPoints = 57;
       else if (team.name === "Aston Villa") resetPoints = 54;
 
       return {
@@ -255,8 +254,8 @@ const FixturePrediction = () => {
               src={
                 team.name === "Manchester City" ? manCityLogo :
                 team.name === "Chelsea" ? chelseaLogo :
-                team.name === "Newcastle United" ? newcastleLogo :
-                team.name === "Nottingham Forest" ? forestLogo :
+                team.name === "Newcastle" ? newcastleLogo :
+                team.name === "Forest" ? forestLogo :
                 team.name === "Aston Villa" ? villaLogo : ""
               }
               alt={`${team.name} Logo`}
@@ -270,11 +269,11 @@ const FixturePrediction = () => {
             />
             <h2>
               <span style={{
-                color: team.name === "Nottingham Forest" ? '#da1515' :
+                color: team.name === "Forest" ? '#da1515' :
                        team.name === "Chelsea" ? 'mediumblue' :
                        team.name === "Manchester City" ? 'dodgerblue' :
                        team.name === "Aston Villa" ? '#670E36' :
-                       team.name === "Newcastle United" ? 'black' : 'inherit'
+                       team.name === "Newcastle" ? 'black' : 'inherit'
               }}>
                 {team.name}
               </span> &nbsp;- {team.currentPoints} Points
