@@ -48,9 +48,8 @@ const teams = [
   {
     name: "Newcastle",
     currentPoints: 59,
-    goalDifference: 21,
+    goalDifference: 18,
     fixtures: [
-      { opponent: "GW33: Aston Villa", venue: "Away", result: "" },
       { opponent: "GW34: Ipswich Town", venue: "Home", result: "" },
       { opponent: "GW35: Brighton and Hove Albion", venue: "Away", result: "" },
       { opponent: "GW36: Chelsea", venue: "Home", result: "" },
@@ -60,10 +59,9 @@ const teams = [
   },
   {
     name: "Aston Villa",
-    currentPoints: 54,
-    goalDifference: 3,
+    currentPoints: 57,
+    goalDifference: 6,
     fixtures: [
-      { opponent: "GW33: Newcastle United", venue: "Home", result: "" },
       { opponent: "GW33: Manchester City", venue: "Away", result: "" },
       { opponent: "GW35: Fulham", venue: "Home", result: "" },
       { opponent: "GW36: Bournemouth", venue: "Away", result: "" },
