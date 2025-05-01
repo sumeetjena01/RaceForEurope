@@ -21,9 +21,8 @@ const teams = [
   {
     name: "Forest",
     currentPoints: 60,
-    goalDifference: 14,
+    goalDifference: 12,
     fixtures: [
-      { opponent: "GW34: Brentford", venue: "Home", result: "" },
       { opponent: "GW35: Crystal Palace", venue: "Away", result: "" },
       { opponent: "GW36: Leicester City", venue: "Home", result: "" },
       { opponent: "GW37: West Ham United", venue: "Away", result: "" },
