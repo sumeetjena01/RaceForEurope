@@ -42,10 +42,9 @@ const teams = [
   },
   {
     name: "Newcastle",
-    currentPoints: 62,
+    currentPoints: 63,
     goalDifference: 21,
     fixtures: [
-      { opponent: "GW35: Brighton and Hove Albion", venue: "Away", result: "" },
       { opponent: "GW36: Chelsea", venue: "Home", result: "" },
       { opponent: "GW37: Arsenal", venue: "Away", result: "" },
       { opponent: "GW38: Everton", venue: "Home", result: "" },
