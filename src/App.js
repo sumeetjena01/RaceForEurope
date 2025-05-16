@@ -9,10 +9,9 @@ import villaLogo from './assets/newvilla.png';
 const teams = [
   {
     name: "Chelsea",
-    currentPoints: 63,
-    goalDifference: 19,
+    currentPoints: 66,
+    goalDifference: 20,
     fixtures: [
-      { opponent: "GW37: Manchester United", venue: "Home", result: "" },
       { opponent: "GW38: Nottingham Forest", venue: "Away", result: "" },
     ],
   },
@@ -45,10 +44,9 @@ const teams = [
   },
   {
     name: "Aston Villa",
-    currentPoints: 63,
-    goalDifference: 7,
+    currentPoints: 66,
+    goalDifference: 9,
     fixtures: [
-      { opponent: "GW37: Tottenham Hotspur", venue: "Home", result: "" },
       { opponent: "GW38: Manchester United", venue: "Away", result: "" },
     ],
   },
